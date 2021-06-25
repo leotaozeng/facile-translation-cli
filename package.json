@@ -1,0 +1,23 @@
+{
+  "name": "facile-translation",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/main.ts"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "typescript",
+    "translation"
+  ],
+  "author": "Leo Zeng",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^7.2.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "npm:null@*"
+  }
+}
