@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/main.ts"
+    "dev": "ts-node-dev src/cli.ts"
   },
   "keywords": [
     "nodejs",
@@ -15,7 +15,9 @@
   "author": "Leo Zeng",
   "license": "MIT",
   "dependencies": {
-    "commander": "^7.2.0"
+    "commander": "^7.2.0",
+    "dotenv": "^10.0.0",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "@types/node": "^15.12.4",
