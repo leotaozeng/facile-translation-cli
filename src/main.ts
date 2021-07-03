@@ -1,7 +1,7 @@
 import https from 'https';
 import querystring from 'querystring';
 
-const translate = (word: string) => {
+const baiduTranslate = (word: string) => {
   const options = {
     hostname: 'api.fanyi.baidu.com',
     port: 443,
@@ -35,4 +35,12 @@ const translate = (word: string) => {
   req.end();
 };
 
-export { translate };
+const youdaoTranslate = (word: string) => {
+  console.log(word);
+};
+
+const googleTranslate = (word: string) => {
+  console.log(word);
+};
+
+export { baiduTranslate, youdaoTranslate, googleTranslate };
