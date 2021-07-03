@@ -1,7 +1,13 @@
 {
   "name": "facile-translation",
+  "bin": {
+    "facile-todo": "cli.ts"
+  },
+  "files": [
+    "cli.ts"
+  ],
   "version": "0.0.1",
-  "description": "",
+  "description": "A simple command-line application written in Node.js that translates English words.",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev src/cli.ts"
