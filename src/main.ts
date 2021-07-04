@@ -1,6 +1,15 @@
+import { IncomingMessage } from 'http';
 import https from 'https';
-import querystring from 'querystring';
 import md5 from 'md5';
+import querystring from 'querystring';
+
+type BaiduResult = {
+  from: string;
+  to: string;
+  trans_result: { src: string; dst: string }[];
+  error_code?: string;
+  error_msg?: string;
+};
 
 const baiduTranslate = (word: string) => {
   const salt = Math.random();
@@ -19,24 +28,39 @@ const baiduTranslate = (word: string) => {
 
   const options = {
     hostname: 'api.fanyi.baidu.com',
-    port: 443,
+    port: 443, // * 443 - https
     path: `/api/trans/vip/translate?${parsedQuery}`,
     method: 'GET'
   };
 
-  const req = https.request(options, (res) => {
-    console.log('statusCode:', res.statusCode);
-    console.log('headers:', res.headers);
+  const request = https.request(options, (response: IncomingMessage) => {
+    let chunks = [];
 
-    res.on('data', (d) => {
-      process.stdout.write(d);
+    response.on('data', (chunk) => {
+      chunks.push(chunk);
+    });
+
+    response.on('end', () => {
+      const string = Buffer.concat(chunks).toString();
+      const object: BaiduResult = JSON.parse(string);
+
+      if (object.error_msg) {
+        console.log('Error:', object.error_msg);
+        process.exit(2); // * 退出当前进程
+      } else {
+        object.trans_result.forEach((item) => {
+          console.log(item);
+        });
+        process.exit(0);
+      }
     });
   });
 
-  req.on('error', (e) => {
+  request.on('error', (e) => {
     console.log(e);
   });
-  req.end();
+
+  request.end();
 };
 
 const youdaoTranslate = (word: string) => {
