@@ -14,7 +14,7 @@ type Option = {
 };
 
 const program = new Command();
-const options = {
+const optionMap = {
   baidu: {
     command: 'baidu <word>',
     description: 'use Baidu Translate',
@@ -44,7 +44,7 @@ program
   .usage('<tool> <word>') // * Usage: facile-translation <tool> <word>
   .helpOption('-H, --help', 'read more information');
 
-Object.values(options).forEach((option: Option) => {
+Object.values(optionMap).forEach((option: Option) => {
   program
     .command(option.command)
     .description(option.description)
