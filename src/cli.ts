@@ -7,6 +7,12 @@ import { baiduTranslate, googleTranslate, youdaoTranslate } from './main';
 
 dotenv.config();
 
+type Option = {
+  command: string;
+  description: string;
+  action: (word: string) => void;
+};
+
 const program = new Command();
 const options = {
   baidu: {
@@ -38,7 +44,7 @@ program
   .usage('<tool> <word>') // * Usage: facile-translation <tool> <word>
   .helpOption('-H, --help', 'read more information');
 
-Object.values(options).forEach((option) => {
+Object.values(options).forEach((option: Option) => {
   program
     .command(option.command)
     .description(option.description)
