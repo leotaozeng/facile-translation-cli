@@ -11,9 +11,15 @@ type BaiduResult = {
   error_msg?: string;
 };
 
+const errorMap = {
+  52003: 'UNAUTHORIZED USER',
+  54001: 'Invalid Sign',
+  unknown: 'Internal Server Error'
+}
+
 const baiduTranslate = (word: string) => {
   const salt = Math.random();
-  const appId = process.env.BAIDU_APP_ID;
+  const appId = process.env.BAIDU_APP_ID + '1';
   const appKey = process.env.BAIDU_APP_KEY;
   const sign = md5(`${appId}${word}${salt}${appKey}`);
 
@@ -43,9 +49,10 @@ const baiduTranslate = (word: string) => {
     response.on('end', () => {
       const string = Buffer.concat(chunks).toString();
       const object: BaiduResult = JSON.parse(string);
+      const { error_code, error_msg } = object
 
-      if (object.error_msg) {
-        console.log('Error:', object.error_msg);
+      if (error_code) {
+        console.log('Error:', errorMap[error_code] || error_msg);
         process.exit(2); // * 退出当前进程
       } else {
         object.trans_result.forEach((item) => {
