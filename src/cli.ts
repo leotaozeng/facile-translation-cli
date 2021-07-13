@@ -18,30 +18,24 @@ const optionMap = {
   baidu: {
     command: 'baidu <word>',
     description: 'use Baidu Translate',
-    action: (word: string) => {
-      baiduTranslate(word)
-    }
+    action: (word: string) => baiduTranslate(word)
   },
   youdao: {
     command: 'youdao <word>',
     description: 'use Youdao Translate',
-    action: (word: string) => {
-      youdaoTranslate(word)
-    }
+    action: (word: string) => youdaoTranslate(word)
   },
   google: {
     command: 'google <word>',
     description: 'use Google Translate',
-    action: (word: string) => {
-      googleTranslate(word)
-    }
+    action: (word: string) => googleTranslate(word)
   }
 };
 
 program
   .version(pkg.version)
-  .name(pkg.name)
-  .usage('<tool> <word>') // * Usage: facile-translation <tool> <word>
+  .name('translate')
+  .usage('<tool> <word>') // * Usage: translate <tool> <word>
   .helpOption('-H, --help', 'read more information');
 
 Object.values(optionMap).forEach((option: Option) => {
