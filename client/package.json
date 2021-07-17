@@ -1,0 +1,36 @@
+{
+  "name": "facile-translation",
+  "bin": {
+    "facile-todo": "cli.ts"
+  },
+  "files": [
+    "cli.ts"
+  ],
+  "version": "1.0.0",
+  "description": "A simple command-line application written in Node.js that translates English words.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev src/cli.ts"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "typescript",
+    "translation"
+  ],
+  "author": "Leo Zeng",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^7.2.0",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^10.0.0",
+    "md5": "^2.3.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
+    "@types/md5": "^2.3.0",
+    "@types/node": "^15.12.4",
+    "ts-node-dev": "^1.1.6"
+  }
+}
